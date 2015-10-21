@@ -1,0 +1,14 @@
+28807_2015__ArduinoIdeNotesOnLaunchingIt.tef  FILES_FROM_iOS						    nFwip		 stag_psresWin_script_exec.sh
+3dPrinter				      firefoxSimulatedKeypresses				    Ninavale_FTPrecup	 stag_psresWin_script_exec.sh~
+arbres_fruitiers_nains.txt		      generatedCHromeExtension					    OpenJSCAD.org	 stag_psresWin_script.sh
+ArduinoIDEs				      github_fullwidth_not_working_from_firefox_as_bookmarklet	    ParkingRF_868MHz	 stag_psresWin_script.sh~
+arduinostudio-0.0.2-linux64		      gnomeTerminalCustomUriHack				    PiTooth.zip		 STEPHANEADAMGARNIER_FTPrecup
+bashReadTests				      googleTranslations					    PixelGif		 StickviseInspired_stephaneAG.openjscad
+bash-snake				      HackyGmailTemplate					    PopcornRipoff	 StickviseInspired_stephaneAG.openjscad~
+baudline_1.08_linux_x86_64		      iOS_inputTouchmoveDebug					    popcorntime		 stuffToDoOrBuy.tef
+BilletsTrain				      iOS_sideloadAndMobileConfigHacks				    RPi			 stuffToDoOrBuy.tef~
+Birthdays				      japaDicTest						    rtl-sdr		 testouille.png
+bringSomeAppWIndosToForeground		      LearnGitBranching						    selfRewritingScript  themingUbuntu.tef
+Construire un projet web.pdf		      lsWithIcons						    SoThereIsAlimit.png  ubuntu_CustomSystemSettingsEntryApp
+fakeBluetoothKeyboard			      Mr_JardonSylvain__microsoft_live_support_chat_29_10_2015.pdf  stag_posizeWin_dict  using_RTL-SDR_with_DVB-T_stick__infos.tef
+fakeBluetoothKeyboardLatest		      neatFrameworkLocalRepo					    stagprompt		 xhrLogsToTerminal
