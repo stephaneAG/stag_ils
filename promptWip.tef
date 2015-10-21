@@ -1,0 +1,29 @@
+R: current prompt:
+PS1="(/\! \`if [ \$? = 0 ]; then echo \[\e[33m\]^_^\[\e[0m\]; else echo \[\e[31m\]O_O\[\e[0m\]; fi\`) ${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\n\\[\033[01;32m\]$\[\033[0m\] "
+
+# step 1: QUICK HACK add the "therefore" symbol to the beginning of the prompt, in red to help better see the end of each command
+PS1=$'\\[\e[31m\\]\u2234\\[\e[0m\\]\n'$PS1
+
+# step1: cleaner but same as the above ( nb: make uses of the $'...' syntax for the easy addon ;p )
+PS1=$'\\[\e[31m\\]\u2234\\[\e[0m\\]\n'"(lol \! \`if [ \$? = 0 ]; then echo \[\e[33m\]^_^\[\e[0m\]; else echo \[\e[31m\]O_O\[\e[0m\]; fi\`) ${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\n\\[\033[01;32m\]$\[\033[0m\] "
+
+# step 2: add the end star + the exit code of the previous command
+# part to add: $'\\[\e[31m\\]\u2605 $? \\[\e[0m\\]'
+PS1=$'\\[\e[31m\\]\u2234\\[\e[0m\\]\n( \\[\e[31m\\]\u2605 $?\\[\e[0m\\]'" \! \`if [ \$? = 0 ]; then echo \[\e[33m\]^_^\[\e[0m\]; else echo \[\e[31m\]O_O\[\e[0m\]; fi\`) ${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\n\\[\033[01;32m\]$\[\033[0m\] "
+
+# blue alternative to step 2:
+PS1=$'\\[\e[01;34m\\]\u2234\\[\e[0m\\]\n( \\[\e[01;34m\\]\u2605 $?\\[\e[0m\\]'" \! \`if [ \$? = 0 ]; then echo \[\e[33m\]^_^\[\e[0m\]; else echo \[\e[31m\]O_O\[\e[0m\]; fi\`) ${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\n\\[\033[01;32m\]$\[\033[0m\] "
+
+# step 3: adding an icon/glyph before the last command history identification number
+# part to add: \xE2\x8C\x9B
+PS1=$'\\[\e[01;34m\\]\u2234\\[\e[0m\\]\n( \\[\e[01;34m\\]\u2605 $?\\[\e[0m\\] \xE2\x8C\x9B'" \! \`if [ \$? = 0 ]; then echo \[\e[33m\]^_^\[\e[0m\]; else echo \[\e[31m\]O_O\[\e[0m\]; fi\`) ${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\n\\[\033[01;32m\]$\[\033[0m\] "
+
+# step 4: colorize the history stuf fin orange/dark orange
+PS1=$'\\[\e[01;34m\\]\u2234\\[\e[0m\\]\n( \\[\e[01;34m\\]\u2605 $?\\[\e[0m\\] \e[38;5;202m\xE2\x8C\x9B \!\e[0m'" \`if [ \$? = 0 ]; then echo \[\e[33m\]^_^\[\e[0m\]; else echo \[\e[31m\]O_O\[\e[0m\]; fi\`) ${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\n\\[\033[01;32m\]$\[\033[0m\] "
+
+# orange-brown-ish alternative for end of last command "therefore"
+PS1=$'\\[\e[38;5;208m\\]\u2234\\[\e[0m\\]\n( \\[\e[01;34m\\]\u2605 $?\\[\e[0m\\] \e[38;5;202m\xE2\x8C\x9B \!\e[0m'" \`if [ \$? = 0 ]; then echo \[\e[33m\]^_^\[\e[0m\]; else echo \[\e[31m\]O_O\[\e[0m\]; fi\`) ${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\n\\[\033[01;32m\]$\[\033[0m\] "
+
+# WIP: checking what a mod of the prompt would look like when messing with the laptop's keyboard & using it as a bluetooth one WHILE NOT RUNNING A GUI
+# part to add: " \xE2\x8C\xA8   "
+PS1=$'\\[\e[38;5;208m\\]\u2234\\[\e[0m\\]\n( \\[\e[01;34m\\]\u2605 $?\\[\e[0m\\] \e[38;5;202m\xE2\x8C\x9B \!\e[0m'" \`if [ \$? = 0 ]; then echo \[\e[33m\]^_^\[\e[0m\]; else echo \[\e[31m\]O_O\[\e[0m\]; fi\`) `echo -e "\xE2\x8C\xA8   "`${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\n\\[\033[01;32m\]$\[\033[0m\] "
