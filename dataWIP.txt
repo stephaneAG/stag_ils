@@ -1,0 +1,19 @@
+28807_2015__ArduinoIdeNotesOnLaunchingIt.tef              [0m[01;36mgoogleTranslations[0m                                            [01;36mselfRewritingScript[0m
+[01;36m3dPrinter[0m                                                 [01;36mHackyGmailTemplate[0m                                            [01;35mSoThereIsAlimit.png[0m
+arbres_fruitiers_nains.txt                                [01;36miOS_inputTouchmoveDebug[0m                                       stag_posizeWin_dict
+[01;36mArduinoIDEs[0m                                               [01;36miOS_sideloadAndMobileConfigHacks[0m                              [01;36mstagprompt[0m
+[01;36marduinostudio-0.0.2-linux64[0m                               [01;36mjapaDicTest[0m                                                   [01;32mstag_psresWin_script_exec.sh[0m
+[01;36mbashReadTests[0m                                             [01;36mLearnGitBranching[0m                                             [01;32mstag_psresWin_script_exec.sh~[0m
+[01;36mbash-snake[0m                                                [01;36mlsWithIcons[0m                                                   stag_psresWin_script.sh
+[01;36mbaudline_1.08_linux_x86_64[0m                                Mr_JardonSylvain__microsoft_live_support_chat_29_10_2015.pdf  stag_psresWin_script.sh~
+[01;36mBilletsTrain[0m                                              [01;36mneatFrameworkLocalRepo[0m                                        [01;36mSTEPHANEADAMGARNIER_FTPrecup[0m
+[01;36mBirthdays[0m                                                 [01;36mnFwip[0m                                                         StickviseInspired_stephaneAG.openjscad
+[01;36mbringSomeAppWIndosToForeground[0m                            [01;36mNinavale_FTPrecup[0m                                             StickviseInspired_stephaneAG.openjscad~
+Construire un projet web.pdf                              [01;36mOpenJSCAD.org[0m                                                 stuffToDoOrBuy.tef
+[01;36mfakeBluetoothKeyboard[0m                                     [01;36mParkingRF_868MHz[0m                                              stuffToDoOrBuy.tef~
+[01;36mfakeBluetoothKeyboardLatest[0m                               [01;31mPiTooth.zip[0m                                                   [01;35mtestouille.png[0m
+[01;36mFILES_FROM_iOS[0m                                            [01;36mPixelGif[0m                                                      themingUbuntu.tef
+[01;36mfirefoxSimulatedKeypresses[0m                                [01;36mPopcornRipoff[0m                                                 [01;36mubuntu_CustomSystemSettingsEntryApp[0m
+[01;36mgeneratedCHromeExtension[0m                                  [01;36mpopcorntime[0m                                                   using_RTL-SDR_with_DVB-T_stick__infos.tef
+github_fullwidth_not_working_from_firefox_as_bookmarklet  [01;36mRPi[0m                                                           [01;36mxhrLogsToTerminal[0m
+[01;36mgnomeTerminalCustomUriHack[0m                                [01;36mrtl-sdr[0m
