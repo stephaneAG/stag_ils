@@ -1,0 +1,213 @@
+# -- GLYPHS / SYMBOLS / CHARS TABLE -- # 
+
+R: to get the hex corresponding to a glyph, simply pipe the output of echo-ing it to hexdump -C
+   ex: echo ✎ | hexdump -C
+       -//> 00000000  e2 9c 8e 0a ..
+       ===> the hex is 'e2 9c 8e 0a', aka \xe2\x9c\x8e or \xE2\x9C\x8E
+
+   -- UDPATE --
+   thanks to some geeky dude who provided this: printf "\\\x%s" $(printf '☠'|xxd -p -c1 -u)
+                                                ===> outputs: \xE2\x98\xA0
+   we can write the following:
+   hexFromGlyph(){ printf "\\\x%s" $(printf "$1"|xxd -p -c1 -u) }
+   & use it: hexFromGlyph ☠
+             ===> outputs: \xE2\x98\xA0
+
+   or even accept multiple glyphs at once
+   hexFromGlyph(){ for glyph in "$@"; do printf "\\\x%s" $(printf "$glyph"|xxd -p -c1 -u); echo; done }
+   & use it: hexFromGlyph ☠ ✿
+             ===> outputs: \xE2\x98\xA0
+                           \xE2\x9C\xBF
+
+   & last but not least, it'd be pretty handy to be able to choose whether to output new lines or just spaces in between the glyph's hexes
+   hexFromGlyph(){
+     if [ "$1" == "-n" ]; then outputSeparator=' '; shift; else outputSeparator='\n'; fi
+     for glyph in "$@"; do printf "\\\x%s" $(printf "$glyph"|xxd -p -c1 -u); echo -n -e "$outputSeparator"; done
+   }
+
+R: SEE https://github.com/stephaneAG/bashrc/blob/master/.bash_stephaneag_glyphs for the LATEST iteration of the above function
+# Quick reminder of some important/useful infos from the above link + some niceties I found
+# to change directories, .. colors or add custom, edit the ~/.bashrc file - or add a '.bash_stephaneag_lsColorsOverride' helper, in my case ?
+# then, add an entry as the following to the end of the file: LS_COLORS=$LS_COLORS:'di=0;35:' ; export LS_COLORS - /!\ seems to be LS_COLORS=$LS_COLORS'di=0;35:' syntax for me
+# some nice color choices, according to the original author of the anwser on Ask Ubuntu ( 0;35 is purple ):
+# first number is the style (1=bold), followed by a semicolon, and then the actual number of the color
+Blue = 34
+Green = 32
+Light Green = 1;32
+Cyan = 36
+Red = 31
+Purple = 35
+Brown = 33
+Yellow = 1;33
+white = 1;37
+Light Grey = 0;37
+Black = 30
+Dark Grey= 1;30
+# possible styles:
+0   = default colour
+1   = bold
+4   = underlined
+5   = flashing text
+7   = reverse field
+40  = black background
+41  = red background
+42  = green background
+43  = orange background
+44  = blue background
+45  = purple background
+46  = cyan background
+47  = grey background
+100 = dark grey background
+101 = light red background
+102 = light green background
+103 = yellow background
+104 = light blue background
+105 = light purple background
+106 = turquoise background
+# possible colors:
+31  = red
+32  = green
+33  = orange
+34  = blue
+35  = purple
+36  = cyan
+37  = grey
+90  = dark grey
+91  = light red
+92  = light green
+93  = yellow
+94  = light blue
+95  = light purple
+96  = turquoise
+# the above can be combined, so we could have 'di=1;4;31;42' in $LS_COLORS, which 'd make dirs appear in bold underlined red text with a green background
+# we can also change how other kinds of files have their names styled when using the ls command by defining each kind with:
+di = directory
+fi = file
+ln = symbolic link
+pi = fifo file
+so = socket file
+bd = block (buffered) special file
+cd = character (unbuffered) special file
+or = symbolic link pointing to a non-existent file (orphan)
+mi = non-existent file pointed to by a symbolic link (visible when you type ls -l)
+ex = file which is executable (ie. has 'x' set in permissions).
+*.rpm = files with the ending .rpm
+# more exhaustive on the different kind of files, & for even more run the following to be amazed be the sectionning of the data .. uncolored :/ => dircolors -p
+#   /* lc: Left of color sequence */
+#   /* rc: Right of color sequence */
+#   /* ec: End color (replaces lc+no+rc) */
+#   /* rs: Reset to ordinary colors */
+#   /* no: Normal */
+#   /* fi: File: default */
+#   /* di: Directory: bright blue */
+#   /* ln: Symlink: bright cyan */
+#   /* pi: Pipe: yellow/brown */
+#   /* so: Socket: bright magenta */
+#   /* bd: Block device: bright yellow */
+#   /* cd: Char device: bright yellow */
+#   /* mi: Missing file: undefined */
+#   /* or: Orphaned symlink: undefined */
+#   /* ex: Executable: bright green */
+#   /* do: Door: bright magenta */
+#   /* su: setuid: white on red */
+#   /* sg: setgid: black on yellow */
+#   /* st: sticky: black on blue */
+#   /* ow: other-writable: blue on green */
+#   /* tw: ow w/ sticky: black on green */
+#   /* ca: black on red */
+#   /* mh: disabled by default */
+#   /* cl: clear to end of line */
+
+# Tef's niceties:
+# as said already, the styles & colors used by ls are stored in $LS_COLORS
+# therefore, we can "pretty-print" them in the terminal using the following
+
+# quick single POC:
+line="*.flac=00;36:"
+# get all rules from LS_COLORS
+echo "${line##*=}"
+# get the rule name of .. a rule ! ^^
+rulename="${line%%=*}"
+# get the style of a rule from LS_COLORS
+style="\e[${line##*=}"
+# echo the rule styled using its params
+echo -e "${style/:/m}$line\e[0m"
+
+# quick helper
+# R: the '| head -n -1' is to remove an unwanted glyph present at the end - after having a look at 'endGLitch.txt', it seems to be '[[0m', aka a '<wtf>[<wtf>[0m'
+stag__lscolors(){
+  # simplest, POC-ok but can be quiclky improved :)
+  #echo -e "${LS_COLORS//:/:\\n}" | head -n -1 | { while read line; do style="\e[${line##*=}"; echo -e "${style/:/m}$line\e[0m"; done; }
+  #echo -e "${LS_COLORS//:/:\\n}" | head -n -1 | { while read line; do rulename="${line%%=*}"; style="\e[${line##*=}"; echo -e "${style/:/m}$rulename\e[0m\t$line"; done; }
+  #echo -e "${LS_COLORS//:/:\\n}" | head -n -1 | { while read line; do rulename="${line%%=*}"; style="\e[${line##*=}"; echo -e " ${style/:/m}$rulename\e[0m\t$line"; done; }
+  # tabs of the above are nice, but get messed up :/
+  echo -e "${LS_COLORS//:/:\\n}" | head -n -1 | { while read line; do rulename="${line%%=*}"; style="\e[${line##*=}"; echo -e "  ${style/:/m}$rulename\e[0m   $line"; done; }
+  # variant - adds a '|' split
+  #stag__lscolors(){   echo -e "${LS_COLORS//:/:\\n}" | head -n -1 | { while read line; do rulename="${line%%=*}"; style="\e[${line##*=}"; echo -e " ${style/:/m}$rulename\e[0m\t| $line"; done; }; }
+}
+# R: a copy of the ouput gotten on my Ubuntu sys is present in 'lscolors_uncolored.txt' & 'lscolors_colored.txt'
+
+
+# TODO: digg the following, & take maaany notes: there's knowledge there !!!
+http://unix.stackexchange.com/a/143885/52934
+
+---- types -- | - glyph - | ---- hex ----
+# for stag_ils ( icon-ed ls)
+text         -->    ✎     --> \xE2\x9C\x8E
+code         -->    ⚛     --> \xE2\x9A\x9B
+code 2       -->    ⚝       --> \xE2\x9A\x9D
+invoices     -->    €    --> \xE2\x82\xAC
+image        -->    ✿     --> \xE2\x9C\xBF
+video        -->    ▶     --> \xE2\x96\xB6
+audio        -->    ♪      --> \xE2\x99\xAA
+bookmark     -->    ★     --> \xE2\x98\x85
+daemon       -->    ⌚        --> \xE2\x8C\x9A
+executable   -->    ⚡      --> \xE2\x9A\xA1
+archive      -->    ♊     --> \xE2\x99\x8A
+pipe         -->    ⧑     --> \xE2\xA7\x91
+flag         -->    ⚑     --> \xE2\x9A\x91
+tef          -->    ⌬     --> \xE2\x8C\xAC
+tefinfo      -->    ⏣     --> \xE2\x8F\xA3
+# other usage
+history      -->    ⌛         --> \xE2\x8C\x9B
+keyboard     -->   ⌨     --> \xE2\x8C\xA8
+
+------ additional fonts icons ------
+# devicons
+# github-opticons
+github            -->       -->
+github big        -->           -->
+github 2          -->       -->
+github 2 big      -->           -->
+github 3          -->       -->
+android           -->       -->
+stack overflow    -->       -->
+apple             -->       -->
+linux             -->       -->
+gnu               -->       -->
+debian            -->       -->
+ubuntu            -->       -->
+codepen           -->       -->
+unity 3d          -->       -->
+raspberry pi      -->       -->
+branching         -->       -->
+javascript        -->       -->
+ruby              -->       --> 
+php               -->       -->
+python            -->       -->
+atom              -->       -->
+open source       -->       -->
+illustrator file  -->       -->
+photoshop file    -->       -->
+text file         -->            -->
+code file         -->            -->
+image file        -->            -->
+archive file      -->            -->
+pdf file          -->            -->
+directory         -->            -->
+code              -->            -->
+chemistry         -->            -->
+depository        -->            -->
+console           -->            -->
+symlink file      -->             -->
+screen            -->            -->
