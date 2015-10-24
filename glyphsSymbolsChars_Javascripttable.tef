@@ -1,0 +1,56 @@
+/*following up the hexes for the glyphs, here comes the corresponding unicode char codepoints */
+// syntax
+console.log('%c%s', 'color: #BADA55; font-size: 30px;', '\u26A1')
+// example
+var glyphs = [];
+glyphs.push( [ 'executable', '\u26A1' ] )
+glyphs.push( [ 'chess', '\u2656' ] )
+glyphs.forEach(function(elem){ console.log('%c%s', 'color: #BADA55; font-size: 30px;', elem[1] + ': ' + elem[0]); });
+// want color support as well ? E-A-S-Y ! ^^
+var glyphs = [];
+glyphs.push( [ 'executable','\u26A1', '#BADA55' ] )
+glyphs.push( [ 'chess', '\u2656', '#00DBFF' ] )
+glyphs.forEach(function(elem){ console.log('%c%s', 'color: ' + elem[2] + '; font-size: 30px;', elem[1] + ': ' + elem[0]); });
+
+
+/* -- mapping to Js stuff -- */
+var glyphs = [];
+// text         -->    ✎     --> \xE2\x9C\x8E    // #A9AC9A // \u270E
+glyphs.push( [ 'text', '\u270E', '#A9AC9A' ] )
+// code         -->    ⚛     --> \xE2\x9A\x9B    // # // \u269B
+glyphs.push( [ 'code', '\u269B', '' ] )
+// code 2       -->    ⚝       --> \xE2\x9A\x9D    // # // \u269D
+glyphs.push( [ 'code2', 'u269D', '' ] )
+// invoices     -->    €    --> \xE2\x82\xAC    // # // \u20AC
+glyphs.push( [ 'invoices', '\u20AC', '' ] )
+// image        -->    ✿     --> \xE2\x9C\xBF    // #D12062 // \u273F
+glyphs.push( [ 'image', '\u273F', '#D12062' ] )
+// video        -->    ▶     --> \xE2\x96\xB6    // #875DAE // \u25B6
+glyphs.push( [ 'video', '\u25B6', '#875DAE' ] )
+// audio        -->    ♪      --> \xE2\x99\xAA    // #308196 // \u266A
+glyphs.push( [ 'audio', '\u266A', '#308196' ] )
+// bookmark     -->    ★     --> \xE2\x98\x85    // # // \u2605
+glyphs.push( [ 'bookmark', '\u2605', '' ] )
+// daemon       -->    ⌚        --> \xE2\x8C\x9A    // # // \u231A
+glyphs.push( [ 'daemon', '\u231A', '' ] )
+// executable   -->    ⚡      --> \xE2\x9A\xA1    // #85DD2F // \u26A1
+glyphs.push( [ 'executable', '\u26A1', '#85DD2F' ] )
+// archive      -->    ♊     --> \xE2\x99\x8A    // #D43933 // \u264A
+glyphs.push( [ 'archive', '\u264A', '#D43933' ] )
+// pipe         -->    ⧑     --> \xE2\xA7\x91    // #C0A100 // \u29D1
+glyphs.push( [ 'pipe', 'u29D1', 'C0A100' ] )
+// flag         -->    ⚑     --> \xE2\x9A\x91    // # // \u2691
+glyphs.push( [ 'flag', '\u2691', '' ] )
+// tef          -->    ⌬     --> \xE2\x8C\xAC    // #D08414 // \u232C
+glyphs.push( [ 'tef', '\u232C', '#D08414' ] )
+// tefinfo      -->    ⏣     --> \xE2\x8F\xA3    // # // \u23E3
+glyphs.push( [ 'tefinfo', '\u23E3', '' ] )
+/* - # other usage - */
+// history      -->    ⌛         --> \xE2\x8C\x9B    // # // \u231B
+glyphs.push( [ 'history', '\u231B', '' ] )
+// keyboard     -->   ⌨     --> \xE2\x8C\xA8    // # // \u2328
+glyphs.push( [ 'keyboard', '\u2328', '' ] )
+/* R: \u214F is funny, and 'd be nice in a signature -> can we have gluphs in email signatures ? ^^ */
+glyphs.forEach(function(elem){ 
+  console.log('%c%s', 'color: ' + elem[2] + '; font-size: 20px;', elem[1] + ' ' + elem[0]);
+});
