@@ -14,15 +14,16 @@ glyphs.forEach(function(elem){ console.log('%c%s', 'color: ' + elem[2] + '; font
 
 
 /* -- mapping to Js stuff -- */
-var glyphs = [];
+//var glyphs = [], defColor = 'black';
+var glyphs = [], defColor = 'white'; // when using the background #333333
 // text         -->    ✎     --> \xE2\x9C\x8E    // #A9AC9A // \u270E
 glyphs.push( [ 'text', '\u270E', '#A9AC9A' ] )
 // code         -->    ⚛     --> \xE2\x9A\x9B    // # // \u269B
-glyphs.push( [ 'code', '\u269B', '' ] )
+glyphs.push( [ 'code', '\u269B', defColor ] )
 // code 2       -->    ⚝       --> \xE2\x9A\x9D    // # // \u269D
-glyphs.push( [ 'code2', 'u269D', '' ] )
+glyphs.push( [ 'code2', '\u269D', defColor ] )
 // invoices     -->    €    --> \xE2\x82\xAC    // # // \u20AC
-glyphs.push( [ 'invoices', '\u20AC', '' ] )
+glyphs.push( [ 'invoices', '\u20AC', defColor ] )
 // image        -->    ✿     --> \xE2\x9C\xBF    // #D12062 // \u273F
 glyphs.push( [ 'image', '\u273F', '#D12062' ] )
 // video        -->    ▶     --> \xE2\x96\xB6    // #875DAE // \u25B6
@@ -30,27 +31,93 @@ glyphs.push( [ 'video', '\u25B6', '#875DAE' ] )
 // audio        -->    ♪      --> \xE2\x99\xAA    // #308196 // \u266A
 glyphs.push( [ 'audio', '\u266A', '#308196' ] )
 // bookmark     -->    ★     --> \xE2\x98\x85    // # // \u2605
-glyphs.push( [ 'bookmark', '\u2605', '' ] )
+glyphs.push( [ 'bookmark', '\u2605', defColor ] )
 // daemon       -->    ⌚        --> \xE2\x8C\x9A    // # // \u231A
-glyphs.push( [ 'daemon', '\u231A', '' ] )
+glyphs.push( [ 'daemon', '\u231A', defColor ] )
 // executable   -->    ⚡      --> \xE2\x9A\xA1    // #85DD2F // \u26A1
 glyphs.push( [ 'executable', '\u26A1', '#85DD2F' ] )
 // archive      -->    ♊     --> \xE2\x99\x8A    // #D43933 // \u264A
 glyphs.push( [ 'archive', '\u264A', '#D43933' ] )
 // pipe         -->    ⧑     --> \xE2\xA7\x91    // #C0A100 // \u29D1
-glyphs.push( [ 'pipe', 'u29D1', 'C0A100' ] )
+glyphs.push( [ 'pipe', '\u29D1', '#C0A100' ] )
 // flag         -->    ⚑     --> \xE2\x9A\x91    // # // \u2691
-glyphs.push( [ 'flag', '\u2691', '' ] )
+glyphs.push( [ 'flag', '\u2691', defColor ] )
 // tef          -->    ⌬     --> \xE2\x8C\xAC    // #D08414 // \u232C
 glyphs.push( [ 'tef', '\u232C', '#D08414' ] )
 // tefinfo      -->    ⏣     --> \xE2\x8F\xA3    // # // \u23E3
-glyphs.push( [ 'tefinfo', '\u23E3', '' ] )
+glyphs.push( [ 'tefinfo', '\u23E3', defColor ] )
 /* - # other usage - */
 // history      -->    ⌛         --> \xE2\x8C\x9B    // # // \u231B
-glyphs.push( [ 'history', '\u231B', '' ] )
+//glyphs.push( [ 'history', '\u231B', defColor ] )
 // keyboard     -->   ⌨     --> \xE2\x8C\xA8    // # // \u2328
-glyphs.push( [ 'keyboard', '\u2328', '' ] )
+//glyphs.push( [ 'keyboard', '\u2328', defColor ] )
 /* R: \u214F is funny, and 'd be nice in a signature -> can we have gluphs in email signatures ? ^^ */
+
+// kinda cool ;)
+console.log('%c\u214F%c stag_ils icons %c\u214F', 'color: #BADA55; font-size: 60px;', 'color: black; font-size: 20px;', 'color: #BADA55; font-size: 60px;')
+// also, 3D
+console.log('%c\u214Fnotice\u214F', 'font-size:100px;color:#fff;text-shadow:0 1px 0 #ccc,0 2px 0 #c9c9c9,0 3px 0 #bbb,0 4px 0 #b9b9b9,0 5px 0 #aaa,0 6px 1px rgba(0,0,0,.1),0 0 5px rgba(0,0,0,.1),0 1px 3px rgba(0,0,0,.3),0 3px 5px rgba(0,0,0,.2),0 5px 10px rgba(0,0,0,.25),0 10px 10px rgba(0,0,0,.2),0 20px 20px rgba(0,0,0,.15);');
+// neat prank: 'll blur any console log ;P
+var _log = console.log;
+console.log = function() {
+  _log.call(console, '%c' + [].slice.call(arguments).join(' '), 'color:transparent;text-shadow:0 0 2px rgba(0,0,0,.5);');
+};
+
+
 glyphs.forEach(function(elem){ 
   console.log('%c%s', 'color: ' + elem[2] + '; font-size: 20px;', elem[1] + ' ' + elem[0]);
 });
+// mod of the above to handle icons that are too small ( ex: keyboard )
+/*
+glyphs.forEach(function(elem){ 
+  if ( elem[0] != 'keyboard' ) console.log('%c%s', 'color: ' + elem[2] + '; font-size: 20px;', ' ' + elem[1] + ' ' + elem[0]);
+  else console.log('%c%s%c%s', 'color: ' + elem[2] + '; font-size: 40px;', elem[1], 'color: ' + elem[2] + '; font-size: 20px;', ' ' + elem[0]);
+});
+*/
+// 3D mod of the above
+glyphs.forEach(function(elem){
+  console.log('%c'+ elem[1] + ' ' + elem[0], 'font-size:100px;color:'+elem[2]+';text-shadow:0 1px 0 #ccc,0 2px 0 #c9c9c9,0 3px 0 #bbb,0 4px 0 #b9b9b9,0 5px 0 #aaa,0 6px 1px rgba(0,0,0,.1),0 0 5px rgba(0,0,0,.1),0 1px 3px rgba(0,0,0,.3),0 3px 5px rgba(0,0,0,.2),0 5px 10px rgba(0,0,0,.25),0 10px 10px rgba(0,0,0,.2),0 20px 20px rgba(0,0,0,.15);');﻿
+  //console.log('%c%s', 'color: ' + elem[2] + '; font-size: 20px;', elem[1] + ' ' + elem[0]);
+});
+
+
+// .. and to have a littl' fun, why not build a fake terminal window in the javascript console window ? ;P
+// aka
+console.log('%c \u2A2F  \u2013  \u25A1  Terminal                                \nlol', 'background: #333333; color: #FAFAFA; font-size: 20px; font-weight: bold')
+
+// 1: TODO: find a way to get the CONSOLE window's width
+//    ( CONSOLE window's width is the same as the window's only if not detached ( .. ) )
+function addSpaces(theString){
+  for(var i=0; i < window.innerWidth/2 - theString.length; i++){
+    theString += " "
+  }
+  return theString;
+  //return theString.substr(0, window.innerWidth/5); // hacky window border ;p
+}
+
+// pretty convincing terminal window ?
+console.log( '%c' + addSpaces( " \u2A2F  \u2013  \u25A1  Terminal" ) + '\n' + addSpaces( "" ), 'background: #333333; font-size: 19px; font-weight: bold' );
+// more ?
+console.log( '%c' + addSpaces( " \u2A2F  \u2013  \u25A1  Terminal" ) + '\n' + '%c' + addSpaces( "$ " ), 'background: #333333; font-size: 19px; font-weight: bold', 'background: #333333; font-size: 19px; color: #85DD2F; font-weight: bold' );
+// or ?
+console.log( addSpaces( '%c' + " \u2A2F  \u2013  \u25A1  Terminal" ) + '\n' + addSpaces( '%c' + "$ " + '%c' + "ils --help" ), 'background: #333333; font-size: 19px; font-weight: bold', 'background: #333333; font-size: 19px; color: #85DD2F; font-weight: bold', 'background: #333333; font-size: 19px; color: white;' );
+
+// even more convincing ?
+var tmpLogs = "";
+var tmpArgs = [];
+// terminal top
+tmpLogs += '%c' + addSpaces( " \u2A2F  \u2013  \u25A1  Terminal" ) + '\n';
+tmpArgs.push('font-size: 17px; background: #333333; font-weight: bold;');
+// terminal prompt
+tmpLogs += addSpaces( '%c' + "$ " + '%c' + "ils --help" ) + '\n';
+tmpArgs.push('background: #333333; font-size: 19px; color: #85DD2F; font-weight: bold');
+tmpArgs.push('background: #333333; font-size: 19px; color: white;')
+// stdout output
+glyphs.forEach(function(elem){
+  tmpLogs += '%c' + addSpaces( elem[1] + ' ' + elem[0] ) + '\n';
+  //tmpArgs.push( 'color: ' + elem[2] + '; font-size: 17px;' ); // uncolored version
+  tmpArgs.push( 'color: ' + elem[2] + '; font-size: 17px; background: #333333;' ); // colored version
+  //console.log('%c%s', 'color: ' + elem[2] + '; font-size: 17px;', elem[1] + ' ' + elem[0]);
+});
+tmpArgs.unshift(tmpLogs);
+console.log.apply(window.console, tmpArgs);
